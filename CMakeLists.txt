@@ -1,0 +1,17 @@
+cmake_minimum_required(VERSION 3.1)
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+project(AlgorytmySzeregowania CXX)
+
+include_directories(inc/)
+
+set(SOURCES src/main.cpp linefeeder_v2/*.cpp)
+
+#set(OTHER_SOURCES src/md5.cpp)
+#add_library(OTHER ${OTHER_SOURCES})
+
+add_executable(${PROJECT_NAME} ${SOURCES})
+target_compile_options(${PROJECT_NAME} PUBLIC -Wall -Wpedantic -Wextra -Wno-unused-parameter -g)
+#target_link_libraries(${PROJECT_NAME} PRIVATE OTHER Threads::Threads)
