@@ -6,17 +6,22 @@
 #include <iostream>
 
 
-void
+int
 read_from_pipe (int file)
 {
+  int n = 0;
   int fd_dup = dup(file);
   FILE *stream;
   int c;
   stream = fdopen (fd_dup, "r");
   while ((c = fgetc (stream)) != EOF && c!= '\n')
+  {
     putchar (c);
+    ++n;
+  }
   putchar('\n');
   fclose (stream);
+  return n;
 }
 
 /* Write some random text to the pipe. */
@@ -84,6 +89,8 @@ int main(int argc, char *argv[]){
       //std::cout << "test" << std::endl;
       read_from_pipe(outpipe[0]);
     }
+    
+    while(read_from_pipe(outpipe[0])){}
     
     return EXIT_SUCCESS;
   }
